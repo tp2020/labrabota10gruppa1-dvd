@@ -32,11 +32,12 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        //element amounts
+        return reservations.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 90
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -45,23 +46,28 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! ReservationTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCustomCell") as! ReservationTableViewCell
+        cell.contentView.layer.cornerRadius = 15
+        cell.contentView.layer.masksToBounds = true
+        cell.contentView.layer.borderColor = UIColor.black.cgColor
+        cell.contentView.layer.borderWidth = 2
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        passData(num: indexPath.item)
+    }
+    
     func passData(num: Int) {
-        //code to switch to another view by tapping on cell (if necessary)
+        let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "ReservarionVC") as! ReservationController
+        self.navigationController?.pushViewController(firstVC, animated: true)
     }
     
     
     @IBAction func createNewReservationBtPressed(_ sender: Any) {
         let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "HotelsVC") as! HotelsController
         self.navigationController?.pushViewController(firstVC, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        passData(num: indexPath.item)
     }
     
     

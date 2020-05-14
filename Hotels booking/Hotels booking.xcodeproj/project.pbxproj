@@ -14,6 +14,7 @@
 		775A7243246DFBF9001D8B0C /* RegistrationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A7242246DFBF9001D8B0C /* RegistrationTableViewCell.swift */; };
 		775A7245246DFD2B001D8B0C /* HotelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A7244246DFD2B001D8B0C /* HotelsTableViewCell.swift */; };
 		775A7247246DFDBA001D8B0C /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A7246246DFDBA001D8B0C /* RouteTableViewCell.swift */; };
+		775A7249246E045F001D8B0C /* ReservationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A7248246E045F001D8B0C /* ReservationController.swift */; };
 		77605FD72467416900DACD1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77605FD62467416900DACD1B /* AppDelegate.swift */; };
 		77605FD92467416900DACD1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77605FD82467416900DACD1B /* SceneDelegate.swift */; };
 		77605FDE2467416900DACD1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77605FDC2467416900DACD1B /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		775A7242246DFBF9001D8B0C /* RegistrationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTableViewCell.swift; sourceTree = "<group>"; };
 		775A7244246DFD2B001D8B0C /* HotelsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsTableViewCell.swift; sourceTree = "<group>"; };
 		775A7246246DFDBA001D8B0C /* RouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
+		775A7248246E045F001D8B0C /* ReservationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationController.swift; sourceTree = "<group>"; };
 		77605FD32467416900DACD1B /* Hotels booking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotels booking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77605FD62467416900DACD1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77605FD82467416900DACD1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				775A7242246DFBF9001D8B0C /* RegistrationTableViewCell.swift */,
 				775A7244246DFD2B001D8B0C /* HotelsTableViewCell.swift */,
 				775A7246246DFDBA001D8B0C /* RouteTableViewCell.swift */,
+				775A7248246E045F001D8B0C /* ReservationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				775A723F246DD965001D8B0C /* MapController.swift in Sources */,
 				775A7247246DFDBA001D8B0C /* RouteTableViewCell.swift in Sources */,
 				77605FD92467416900DACD1B /* SceneDelegate.swift in Sources */,
+				775A7249246E045F001D8B0C /* ReservationController.swift in Sources */,
 				985826DF246DB1AE00698E7B /* myBase.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
