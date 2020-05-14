@@ -18,6 +18,7 @@
 		7760600D246754EA00DACD1B /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760600C246754EA00DACD1B /* RegistrationController.swift */; };
 		7760601024675D9400DACD1B /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760600F24675D9400DACD1B /* UserDefaultHelper.swift */; };
 		7760601224675FB700DACD1B /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760601124675FB700DACD1B /* Animations.swift */; };
+		985826DF246DB1AE00698E7B /* myBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 985826DD246DB1AE00698E7B /* myBase.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		7760600C246754EA00DACD1B /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		7760600F24675D9400DACD1B /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 		7760601124675FB700DACD1B /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		985826DE246DB1AE00698E7B /* myBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myBase.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		77605FD52467416900DACD1B /* Hotels booking */ = {
 			isa = PBXGroup;
 			children = (
+				986E0789246D9227006324F5 /* Model */,
 				7760600E24675CDF00DACD1B /* Controllers */,
 				77605FD62467416900DACD1B /* AppDelegate.swift */,
 				77605FD82467416900DACD1B /* SceneDelegate.swift */,
@@ -143,6 +146,15 @@
 				776060062467464700DACD1B /* LoginController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		986E0789246D9227006324F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				985826DD246DB1AE00698E7B /* myBase.xcdatamodeld */,
+			);
+			name = Model;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +294,7 @@
 				77605FD72467416900DACD1B /* AppDelegate.swift in Sources */,
 				7760600D246754EA00DACD1B /* RegistrationController.swift in Sources */,
 				77605FD92467416900DACD1B /* SceneDelegate.swift in Sources */,
+				985826DF246DB1AE00698E7B /* myBase.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +623,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		985826DD246DB1AE00698E7B /* myBase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				985826DE246DB1AE00698E7B /* myBase.xcdatamodel */,
+			);
+			currentVersion = 985826DE246DB1AE00698E7B /* myBase.xcdatamodel */;
+			path = myBase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 77605FCB2467416900DACD1B /* Project object */;
 }
