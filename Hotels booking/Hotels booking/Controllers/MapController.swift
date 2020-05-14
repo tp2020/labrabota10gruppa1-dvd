@@ -53,6 +53,8 @@ class MapController: UIViewController {
     }
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
+        let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "RouteVC") as! RouteController
+        self.navigationController?.pushViewController(firstVC, animated: true)
     }
     
 
