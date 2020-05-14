@@ -36,6 +36,10 @@ class RegistrationController: UIViewController {
             UserDefaultHelper.saveStringValue(key: emailTF.text!, value: passwordTF.text!)
 
             NSLog("registrated successfully" as String)
+            
+            let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainController
+            self.navigationController?.pushViewController(firstVC, animated: true)
+            
         }else{
             Animations.shake(view: passwordRepeatTF);
             Animations.shake(view: passwordTF);
