@@ -34,7 +34,7 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Existing Reservations"
+        return "Hotels list"
     }
     
     
@@ -56,4 +56,5 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapController
         self.navigationController?.pushViewController(firstVC, animated: true)
     }
+    
 }
