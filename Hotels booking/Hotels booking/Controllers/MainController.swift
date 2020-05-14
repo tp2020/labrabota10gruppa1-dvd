@@ -15,11 +15,17 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var createNewResrvationBt: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        createNewResrvationBt.layer.cornerRadius = 12	
+        createNewResrvationBt.layer.cornerRadius = 12
+        self.hideNavigationBar()
 
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        self.hideNavigationBar()
+    }
+    	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -45,7 +51,10 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @IBAction func createNewReservationBtPressed(_ sender: Any) {
+        let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "HotelsVC") as! HotelsController
+        self.navigationController?.pushViewController(firstVC, animated: true)
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         passData(num: indexPath.item)

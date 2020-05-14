@@ -260,6 +260,87 @@ reservation</string>
             </objects>
             <point key="canvasLocation" x="2430.434782608696" y="113.83928571428571"/>
         </scene>
+        <!--Hotels Controller-->
+        <scene sceneID="0dN-25-zFd">
+            <objects>
+                <viewController restorationIdentifier="HotelsVC" storyboardIdentifier="HotelsVC" id="Sy9-rs-0ew" customClass="HotelsController" customModule="Hotels_booking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MMK-Pl-Gni">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="standart" translatesAutoresizingMaskIntoConstraints="NO" id="4I4-fN-sgp">
+                                <rect key="frame" x="32" y="174" width="350" height="130"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="GQX-b6-5c3">
+                                <rect key="frame" x="76" y="337" width="263" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="-40" minY="10" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="Siri Icon">
+                                    <string key="title">Confirm new 
+reservation</string>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmButtonPressed:" destination="Sy9-rs-0ew" eventType="touchUpInside" id="Hue-xU-HIh"/>
+                                    <action selector="createNewReservationBtPressed:" destination="rBY-EJ-AvK" eventType="touchUpInside" id="R43-jA-JoD"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bmT-eI-4yZ">
+                                <rect key="frame" x="0.0" y="449" width="414" height="413"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="customCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="I5v-tD-COA" customClass="TableViewCell" customModule="Hotels_booking" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I5v-tD-COA" id="a07-eP-ax4">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hotels list" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hs7-mt-fm2">
+                                <rect key="frame" x="32" y="411" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ff7-G8-pGr">
+                                <rect key="frame" x="32" y="106" width="350" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Standart"/>
+                                    <segment title="Lux"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="Sy9-rs-0ew" eventType="valueChanged" id="f1y-4N-9SJ"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bzk-sS-VXf"/>
+                    </view>
+                    <connections>
+                        <outlet property="confirmBt" destination="GQX-b6-5c3" id="J9G-Wm-QhQ"/>
+                        <outlet property="imageIV" destination="4I4-fN-sgp" id="VF4-nz-UST"/>
+                        <outlet property="listTV" destination="bmT-eI-4yZ" id="myu-k8-EDP"/>
+                        <outlet property="segmentationSC" destination="ff7-G8-pGr" id="wrx-Jl-X7v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XKI-sz-rU5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3142.0289855072465" y="111.83035714285714"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="p3p-XT-fw2">
             <objects>
@@ -282,5 +363,6 @@ reservation</string>
     <resources>
         <image name="Siri Icon" width="37" height="37"/>
         <image name="hotels" width="359" height="140"/>
+        <image name="standart" width="350" height="131"/>
     </resources>
 </document>
