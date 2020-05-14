@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		773AAE00246DA4B500074827 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773AADFF246DA4B500074827 /* MainController.swift */; };
+		773AAE02246DA80600074827 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773AAE01246DA80600074827 /* TableViewCell.swift */; };
+		773AAE04246DB24100074827 /* HotelsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773AAE03246DB24100074827 /* HotelsController.swift */; };
 		77605FD72467416900DACD1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77605FD62467416900DACD1B /* AppDelegate.swift */; };
 		77605FD92467416900DACD1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77605FD82467416900DACD1B /* SceneDelegate.swift */; };
 		77605FDE2467416900DACD1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77605FDC2467416900DACD1B /* Main.storyboard */; };
@@ -38,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		773AADFF246DA4B500074827 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		773AAE01246DA80600074827 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		773AAE03246DB24100074827 /* HotelsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsController.swift; sourceTree = "<group>"; };
 		77605FD32467416900DACD1B /* Hotels booking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotels booking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77605FD62467416900DACD1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77605FD82467416900DACD1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +147,9 @@
 			children = (
 				7760600C246754EA00DACD1B /* RegistrationController.swift */,
 				776060062467464700DACD1B /* LoginController.swift */,
+				773AADFF246DA4B500074827 /* MainController.swift */,
+				773AAE01246DA80600074827 /* TableViewCell.swift */,
+				773AAE03246DB24100074827 /* HotelsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -277,9 +286,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				776060072467464700DACD1B /* LoginController.swift in Sources */,
+				773AAE02246DA80600074827 /* TableViewCell.swift in Sources */,
+				773AAE00246DA4B500074827 /* MainController.swift in Sources */,
 				7760601024675D9400DACD1B /* UserDefaultHelper.swift in Sources */,
 				7760601224675FB700DACD1B /* Animations.swift in Sources */,
 				77605FD72467416900DACD1B /* AppDelegate.swift in Sources */,
+				773AAE04246DB24100074827 /* HotelsController.swift in Sources */,
 				7760600D246754EA00DACD1B /* RegistrationController.swift in Sources */,
 				77605FD92467416900DACD1B /* SceneDelegate.swift in Sources */,
 			);
