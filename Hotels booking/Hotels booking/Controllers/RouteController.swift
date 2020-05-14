@@ -28,7 +28,7 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! RouteTableViewCell
 
         return cell
     }

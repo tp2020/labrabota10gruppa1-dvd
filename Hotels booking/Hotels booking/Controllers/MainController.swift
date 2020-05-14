@@ -45,7 +45,7 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! ReservationTableViewCell
         return cell
     }
     

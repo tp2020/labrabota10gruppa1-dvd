@@ -39,7 +39,7 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! HotelsTableViewCell
 
         return cell
     }

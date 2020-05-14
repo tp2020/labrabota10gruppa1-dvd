@@ -1,15 +1,21 @@
 //
-//  TableViewCell.swift
+//  RouteTableViewCell.swift
 //  Hotels booking
 //
-//  Created by Viktor on 5/14/20.
+//  Created by Viktor on 5/15/20.
 //  Copyright © 2020 Viktor. All rights reserved.
 //
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
-
+class RouteTableViewCell: UITableViewCell {
+    @IBOutlet weak var companyLb: UILabel!
+    @IBOutlet weak var priceLb: UILabel!
+    @IBOutlet weak var fromLb: UILabel!
+    @IBOutlet weak var toLb: UILabel!
+    @IBOutlet weak var departTimeLb: UILabel!
+    @IBOutlet weak var arriveTimeLb: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
