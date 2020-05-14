@@ -7,17 +7,22 @@
 //
 
 import UIKit
+import CoreData
 
 class MainController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
     @IBOutlet weak var listTV: UITableView!
+    var reservations: [NSManagedObject] = []
+    var login:String = ""
 
     @IBOutlet weak var createNewResrvationBt: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         createNewResrvationBt.layer.cornerRadius = 12
         self.hideNavigationBar()
-
+        
+        loadData()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -35,13 +40,12 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Existing Reservations"
+        return "Your Reservations"
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
-
         return cell
     }
     
@@ -60,5 +64,29 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         passData(num: indexPath.item)
     }
     
+    
+    func loadData(){
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext =
+          appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest =
+          NSFetchRequest<NSManagedObject>(entityName: "Hotel")
+        var tempReservations: [NSManagedObject] = []
+        do {
+            tempReservations = try managedContext.fetch(fetchRequest)
+            for reservation in tempReservations{
+                if(reservation.value(forKey: "user") as! String == login){
+                    reservations.append(reservation)
+                }
+            }
+        } catch let error as NSError {
+          print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
 
 }

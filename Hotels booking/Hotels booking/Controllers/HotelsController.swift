@@ -34,7 +34,7 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Existing Reservations"
+        return "Hotels list"
     }
     
     
@@ -54,4 +54,5 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
     }
+    
 }

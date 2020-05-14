@@ -47,6 +47,28 @@ class RegistrationController: UIViewController {
         }
     }
 
+    func fill_database(){
+        addHotel(name: "Grand",descriptions: "Luxury hotel near summary beaches of mediterranean",country: "Greece",city: "Thessaloniki",numbOfLuxRooms: 10,numbOfStRooms: 50,luxPrice: 1000,standardPrice: 300);
+        addHotel(name: "Catalonia Barcelona Plaza",descriptions: "Wonderful places of Spain",country: "Spain",city: "Barcelona",numbOfLuxRooms: 15,numbOfStRooms: 100,luxPrice: 1120,standardPrice: 450);
+        addHotel(name: "Hostal Art Madrid",descriptions: "Cosy hotel for business trips",country: "Spain",city: "Madrid",numbOfLuxRooms: 0, numbOfStRooms: 50,luxPrice: 0,standardPrice: 350);
+        addHotel(name: "Hostal ruzafa fun",descriptions: "Comfortable hostel for tourists",country: "Spain",city: "Valencia",numbOfLuxRooms: 5,numbOfStRooms: 30,luxPrice: 800,standardPrice: 375);
+        addHotel(name: "Hotel Noemi",descriptions: "Great hotel with great views",country: "Italy",city: "Venice",numbOfLuxRooms: 10,numbOfStRooms: 60,luxPrice: 1220,standardPrice: 550);
+        addHotel(name: "Hotel Colombo",descriptions: "Charming hotel in the center",country: "Italy",city: "Naples",numbOfLuxRooms: 0,numbOfStRooms: 25,luxPrice: 0,standardPrice: 400);
+        addHotel(name: "Guesthouse Liamra",descriptions: "Small homely hotel",country: "Montenegro",city: "Ulcinj",numbOfLuxRooms: 0,numbOfStRooms: 40,luxPrice: 0,standardPrice: 420);
+        addHotel(name: "Apartment city life",descriptions: "Grand hotel in the capital",country: "Montenegro",city: "Podgorica",numbOfLuxRooms: 25,numbOfStRooms: 120,luxPrice: 940,standardPrice: 350);
+        addHotel(name: "Hotel azzuro",descriptions: "Beautiful view directly on the sea",country: "Montenegro",city: "Herceg Novi",numbOfLuxRooms: 12,numbOfStRooms: 50,luxPrice: 1400,standardPrice: 450);
+        addHotel(name: "Lemon hotel",descriptions: "Wonderful hotel with swimming pool",country: "Turkey",city: "Antalya",numbOfLuxRooms: 20,numbOfStRooms: 120,luxPrice: 1100,standardPrice: 420);
+        addHotel(name: "The New Hotel Zeybek",descriptions: "Nice hotel with restaurant",country: "Turkey",city: "Izmir",numbOfLuxRooms: 30,numbOfStRooms: 40,luxPrice: 850,standardPrice: 270);
+        addHotel(name: "Seher hotel",descriptions: "Modern hotel with cozy rooms",country: "Turkey",city: "Istanbul",numbOfLuxRooms: 10,numbOfStRooms: 40,luxPrice: 890,standardPrice: 350);
+        addHotel(name: "Wind Rose Hotel & SPA",descriptions: "Luxury modern hotel",country: "Russia",city: "Sochi",numbOfLuxRooms: 35,numbOfStRooms: 120,luxPrice: 1400,standardPrice: 560);
+        addHotel(name: "Moskovskiy",descriptions: "Affordable hostel for tourists",country: "Russia",city: "Kaliningrad",numbOfLuxRooms: 0,numbOfStRooms: 40,luxPrice: 0,standardPrice: 240);
+        addHotel(name: "Hotel Flamingo",descriptions: "Hotel with swimming pool and part of the beach",country: "Russia",city: "Anapa",numbOfLuxRooms: 4,numbOfStRooms: 12,luxPrice: 1350,standardPrice: 440);
+        addHotel(name: "Royal hotel",descriptions: "Homely hoteml with restaurant",country: "Russia",city: "Moscow",numbOfLuxRooms: 5,numbOfStRooms: 130,luxPrice: 850,standardPrice: 250);
+        addHotel(name: "Sova",descriptions: "Beautiful small hotel",country: "Ukraine",city: "Odesa",numbOfLuxRooms: 8,numbOfStRooms: 40,luxPrice: 750,standardPrice: 340);
+        addHotel(name: "Hotel Florida",descriptions: "Charming hotel in the capital of the country",country: "Ukraine",city: "Kiev",numbOfLuxRooms: 6,numbOfStRooms: 32,luxPrice: 780,standardPrice: 410);
+        
+        
+    }
     
     func addHotel(name:String,descriptions:String,country:String,city:String,numbOfLuxRooms:Int,numbOfStRooms:Int,luxPrice:Int,
                   standardPrice:Int){
@@ -63,6 +85,7 @@ class RegistrationController: UIViewController {
               let hotel = NSManagedObject(entity: entity,
                                             insertInto: managedContext)
               hotel.setValue(city, forKeyPath: "city")
+        hotel.setValue(country, forKeyPath: "country")
               hotel.setValue(name, forKey: "name")
               hotel.setValue(descriptions,forKey: "descriptions")
         hotel.setValue(numbOfLuxRooms,forKey: "numbOfLuxRooms")
@@ -109,7 +132,7 @@ class RegistrationController: UIViewController {
         }
     }
     
-    func addReservation(hotel:NSManagedObject,route:NSManagedObject,typeOfRoom:String){
+    func addReservation(hotel:NSManagedObject,route:NSManagedObject,typeOfRoom:String, userLogin:String){
         guard let appDelegate =
                 UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -122,7 +145,16 @@ class RegistrationController: UIViewController {
                                            in: managedContext)!
         let reservation = NSManagedObject(entity: entity,
         insertInto: managedContext)
-        
+
+        var totalPrice:Int = 0
+        if(typeOfRoom == "lux"){
+            totalPrice = hotel.value(forKey: "luxPrice") as! Int
+        }
+        else{
+            totalPrice = hotel.value(forKey: "standardPrice") as! Int
+        }
+        totalPrice = totalPrice + (route.value(forKey: "price") as! Int)
+        reservation.setValue(totalPrice,forKey: "totalPrice")
         reservation.setValue(typeOfRoom, forKey: "typeOfRoom")
         reservation.mutableSetValue(forKey: "hotel").add(hotel)
         reservation.mutableSetValue(forKey: "route").add(route)
@@ -130,7 +162,7 @@ class RegistrationController: UIViewController {
         let formatter = DateFormatter()
         let dateString = formatter.string(from: date)
         reservation.setValue(dateString,forKey: "time")
-        
+        reservation.setValue(userLogin,forKey: "user")
         do {
           try managedContext.save()
         } catch let error as NSError {
