@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Hotels_booking
+//@testable import Hotels_booking
 
 class Hotels_bookingTests: XCTestCase {
 
