@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 
 class ReservationController: UIViewController {
-
+    
+    @IBOutlet weak var transportLb: UILabel!
     @IBOutlet weak var hotelNameLb: UILabel!
     @IBOutlet weak var countryLb: UILabel!
     @IBOutlet weak var cityLb: UILabel!
@@ -44,6 +45,7 @@ class ReservationController: UIViewController {
         arriveLb.text = route.value(forKey: "timeOfArrive") as? String
         descriptionLb.text = hotel.value(forKey: "descriptions") as? String
         totalPriceLb.text = String(hotel.value(forKey: "totalPrice") as! Int)
+        //transportLb.text =
     }
 
     /*

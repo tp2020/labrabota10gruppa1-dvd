@@ -19,6 +19,7 @@ class MapController: UIViewController {
     let hotel = NSManagedObject()
     var cityAnnotation = MKPointAnnotation()
     var login = ""
+    var typeOfRoom = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,7 @@ class MapController: UIViewController {
         firstVC.originCity = cityAnnotation.title!
         firstVC.hotel = hotel
         firstVC.login = login
+        firstVC.typeOfRoom = typeOfRoom
         self.navigationController?.pushViewController(firstVC, animated: true)
     }
     
