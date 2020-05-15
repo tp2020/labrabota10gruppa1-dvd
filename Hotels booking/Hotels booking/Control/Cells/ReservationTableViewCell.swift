@@ -1,5 +1,5 @@
 //
-//  RouteTableViewCell.swift
+//  RegistrationTableViewCell.swift
 //  Hotels booking
 //
 //  Created by Viktor on 5/15/20.
@@ -8,13 +8,16 @@
 
 import UIKit
 
-class RouteTableViewCell: UITableViewCell {
-    @IBOutlet weak var companyLb: UILabel!
+/*
+    ReservationTableViewCell
+    Cell with brief data of reservation
+ */
+
+class ReservationTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLb: UILabel!
-    @IBOutlet weak var fromLb: UILabel!
-    @IBOutlet weak var toLb: UILabel!
-    @IBOutlet weak var departTimeLb: UILabel!
-    @IBOutlet weak var arriveTimeLb: UILabel!
+    @IBOutlet weak var dateLb: UILabel!
+    @IBOutlet weak var cityLb: UILabel!
+    @IBOutlet weak var hotelNameLb: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +25,8 @@ class RouteTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
 
 }

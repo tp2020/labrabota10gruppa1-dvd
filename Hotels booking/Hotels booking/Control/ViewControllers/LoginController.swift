@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+/*
+   LoginController
+   Controller of login scene
+*/
+
 class LoginController: UIViewController {
     @IBOutlet weak var registrationBt: UIButton!
     @IBOutlet weak var signInBt: UIButton!
@@ -29,7 +34,7 @@ class LoginController: UIViewController {
             if (UserDefaultHelper.getStringValue(key: emailTF.text!) == passwordTF.text) {
                 NSLog("Hello, it's me" as String)
                 let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainController
-                firstVC.login = emailTF.text!
+                DataOperator.getInstance().writeToPlist(data: emailTF.text!, key: "login")
                 self.navigationController?.pushViewController(firstVC, animated: true)
             }
             else {

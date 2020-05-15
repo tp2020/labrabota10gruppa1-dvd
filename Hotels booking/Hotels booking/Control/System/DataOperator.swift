@@ -10,55 +10,16 @@ import Foundation
 import CoreData
 import UIKit
 
+/*
+    DataOperator
+    Class, which provides interface of database serfing
+ */
+
 class DataOperator {
     private static var instance: DataOperator?
     private var managedContext: NSManagedObjectContext
     
-    private func addHotel(name: String, descriptions: String, country: String, city: String, numbOfLuxRooms: Int, numbOfStRooms: Int, luxPrice: Int, standardPrice:Int) {
-        let entity = NSEntityDescription.entity(forEntityName: "Hotel", in: managedContext)!
-
-        let hotel = NSManagedObject(entity: entity, insertInto: managedContext)
-        hotel.setValue(city, forKeyPath: "city")
-        hotel.setValue(country, forKeyPath: "country")
-        hotel.setValue(name, forKey: "name")
-        hotel.setValue(descriptions,forKey: "descriptions")
-        hotel.setValue(numbOfLuxRooms,forKey: "numbOfLuxRooms")
-        hotel.setValue(numbOfStRooms, forKey: "numbOfStRooms")
-        hotel.setValue(luxPrice, forKey: "luxPrice")
-        hotel.setValue(standardPrice, forKey: "standardPrice")
-
-        do {
-          try managedContext.save()
-        }
-        catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
     
-    private func addRoute(transportType: String, cityFrom: String, cityTo: String, price: Int, time: String, timeOfArrive: String, numbOfTickets: Int, company: String) {
-        let entity = NSEntityDescription.entity(forEntityName: "Route", in: managedContext)!
-        let route = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        route.setValue(cityFrom, forKey: "cityFrom")
-        route.setValue(cityTo, forKey: "cityTo")
-        route.setValue(time, forKey: "time")
-        route.setValue(timeOfArrive, forKey: "timeOfArrive")
-        route.setValue(company, forKey: "company")
-        route.setValue(price, forKey: "Price")
-        route.setValue(numbOfTickets, forKey: "numbOfTickets")
-        
-        let entityTransport = NSEntityDescription.entity(forEntityName: "Transport", in: managedContext)!
-        let transport = NSManagedObject(entity: entityTransport, insertInto: managedContext)
-        transport.setValue(transportType, forKey: "type")
-        route.setValue(transport, forKey: "transport")
-        
-        do {
-            try managedContext.save()
-        }
-        catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
     
     private init() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -73,6 +34,8 @@ class DataOperator {
         }
         return instance!
     }
+    
+    //MARK: - database cleaning
     
     func deleteAllData(forEntity entity: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
@@ -93,6 +56,8 @@ class DataOperator {
             fatalError(error.description)
         }
     }
+    
+    //MARK: - methods of database filling
     
     func fillDatabase() {
         addHotel(name: "Grand",descriptions: "Luxury hotel near summary beaches of mediterranean",country: "Greece",city: "Thessaloniki",numbOfLuxRooms: 10,numbOfStRooms: 50,luxPrice: 1000,standardPrice: 300);
@@ -171,6 +136,89 @@ class DataOperator {
         addRoute(transportType: "Bus", cityFrom: "Moscow", cityTo: "Lviv", price: 35, time: "2020-05-13 16:18", timeOfArrive: "2020-05-15 20:06", numbOfTickets: 5, company: "Ecolines")
     }
     
+    private func addHotel(name: String, descriptions: String, country: String, city: String, numbOfLuxRooms: Int, numbOfStRooms: Int, luxPrice: Int, standardPrice:Int) {
+        let entity = NSEntityDescription.entity(forEntityName: "Hotel", in: managedContext)!
+
+        let hotel = NSManagedObject(entity: entity, insertInto: managedContext)
+        hotel.setValue(city, forKeyPath: "city")
+        hotel.setValue(country, forKeyPath: "country")
+        hotel.setValue(name, forKey: "name")
+        hotel.setValue(descriptions,forKey: "descriptions")
+        hotel.setValue(numbOfLuxRooms,forKey: "numbOfLuxRooms")
+        hotel.setValue(numbOfStRooms, forKey: "numbOfStRooms")
+        hotel.setValue(luxPrice, forKey: "luxPrice")
+        hotel.setValue(standardPrice, forKey: "standardPrice")
+
+        do {
+          try managedContext.save()
+        }
+        catch let error as NSError {
+          print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    private func addRoute(transportType: String, cityFrom: String, cityTo: String, price: Int, time: String, timeOfArrive: String, numbOfTickets: Int, company: String) {
+        let entity = NSEntityDescription.entity(forEntityName: "Route", in: managedContext)!
+        let route = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        route.setValue(cityFrom, forKey: "cityFrom")
+        route.setValue(cityTo, forKey: "cityTo")
+        route.setValue(time, forKey: "time")
+        route.setValue(timeOfArrive, forKey: "timeOfArrive")
+        route.setValue(company, forKey: "company")
+        route.setValue(price, forKey: "Price")
+        route.setValue(numbOfTickets, forKey: "numbOfTickets")
+        
+        let entityTransport = NSEntityDescription.entity(forEntityName: "Transport", in: managedContext)!
+        let transport = NSManagedObject(entity: entityTransport, insertInto: managedContext)
+        transport.setValue(transportType, forKey: "type")
+        route.setValue(transport, forKey: "transport")
+        
+        do {
+            try managedContext.save()
+        }
+        catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func addReservation(hotel: NSManagedObject, route: NSManagedObject, typeOfRoom: String, userLogin: String) {
+        let entity = NSEntityDescription.entity(forEntityName: "Reservation", in: managedContext)!
+        let reservation = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        var totalPrice: Int = 0
+        if typeOfRoom == "lux" {
+            totalPrice = hotel.value(forKey: "luxPrice") as! Int
+            hotel.setValue(hotel.value(forKey: "numbOfLuxRooms") as! Int, forKey: "numbOfLuxRooms")
+        }
+        else {
+            totalPrice = hotel.value(forKey: "standardPrice") as! Int
+            hotel.setValue(hotel.value(forKey: "numbOfStRooms") as! Int, forKey: "numbOfStRooms")
+        }
+        
+        route.setValue(route.value(forKey: "numbOfTickets") as! Int, forKey: "numbOfTickets")
+        totalPrice = totalPrice + (route.value(forKey: "price") as! Int)
+        reservation.setValue(totalPrice,forKey: "totalPrice")
+        reservation.setValue(typeOfRoom, forKey: "typeOfRoom")
+        reservation.setValue(hotel,forKey: "hotel")
+        reservation.setValue(route,forKey: "route")
+        let date = Date()
+        let formatter = DateFormatter()
+        let dateString = formatter.string(from: date)
+        reservation.setValue(dateString,forKey: "time")
+        reservation.setValue(userLogin,forKey: "user")
+        
+        do {
+            try managedContext.save()
+            NSLog("reservation created successfully")
+        }
+        catch let error as NSError {
+            fatalError("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    //MARK: - load data from database
+    
     func loadReservationData(forLogin login: String) -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Reservation")
         var reservations = [NSManagedObject]()
@@ -223,38 +271,48 @@ class DataOperator {
         return routes
     }
     
-    func addReservation(hotel: NSManagedObject, route: NSManagedObject, typeOfRoom: String, userLogin: String) {
-        let entity = NSEntityDescription.entity(forEntityName: "Reservation", in: managedContext)!
-        let reservation = NSManagedObject(entity: entity, insertInto: managedContext)
+
+    
+    //MARK: - plist functional
+    
+    func writeToPlist(data:String,key:String) {
+        let path = Bundle.main.path(forResource: "data", ofType: "plist")!
+        let directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as Array
+        let docPath = directories[0] as String
         
-        var totalPrice: Int = 0
-        if typeOfRoom == "lux" {
-            totalPrice = hotel.value(forKey: "luxPrice") as! Int
-            hotel.setValue(hotel.value(forKey: "numbOfLuxRooms") as! Int, forKey: "numbOfLuxRooms")
-        }
-        else {
-            totalPrice = hotel.value(forKey: "standardPrice") as! Int
-            hotel.setValue(hotel.value(forKey: "numbOfStRooms") as! Int, forKey: "numbOfStRooms")
-        }
+        let plistPath = docPath.appending("data.plist")
         
-        route.setValue(route.value(forKey: "numbOfTickets") as! Int, forKey: "numbOfTickets")
-        totalPrice = totalPrice + (route.value(forKey: "price") as! Int)
-        reservation.setValue(totalPrice,forKey: "totalPrice")
-        reservation.setValue(typeOfRoom, forKey: "typeOfRoom")
-        reservation.setValue(hotel,forKey: "hotel")
-        reservation.setValue(route,forKey: "route")
-        let date = Date()
-        let formatter = DateFormatter()
-        let dateString = formatter.string(from: date)
-        reservation.setValue(dateString,forKey: "time")
-        reservation.setValue(userLogin,forKey: "user")
-        
-        do {
-            try managedContext.save()
-            NSLog("reservation created successfully")
+        let fileManager = FileManager.default
+        if(!fileManager.fileExists(atPath: plistPath))
+        {
+            do
+            {
+                try fileManager.copyItem(atPath: path, toPath: plistPath)
+            }
+            catch{
+                print("copy failure")
+            }
         }
-        catch let error as NSError {
-            fatalError("Could not save. \(error), \(error.userInfo)")
+        else
+        {
+            print("file already exists")
         }
+        let demoDict = NSMutableDictionary(contentsOfFile: path)
+        demoDict?.setValue(data, forKey: key)
+        demoDict?.write(toFile: path, atomically: true)
     }
+    
+    func readFromPlist(key:String)->String{
+           let bundlePath = Bundle.main.path(forResource: "data",ofType: "plist")!
+           
+           let myDict = NSDictionary(contentsOfFile: bundlePath)
+           if let dict = myDict{
+            return (dict.object(forKey: key) as! String?)!
+           }
+           else
+           {
+               print("load failure.")
+                return ""
+           }
+       }
 }

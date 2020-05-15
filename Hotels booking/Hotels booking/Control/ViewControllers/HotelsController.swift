@@ -9,6 +9,11 @@
 import UIKit
 import CoreData
 
+/*
+   HotelsController
+   Controller of the scene of the hotel selection
+*/
+
 class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var listTV: UITableView!
     @IBOutlet weak var segmentationSC: UISegmentedControl!
@@ -17,7 +22,6 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var currentIndex: Int = -1
     var hotels = [NSManagedObject]()
-    var login = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,8 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         hotels = DataOperator.getInstance().loadHotelData()
         listTV.reloadData()
     }
+    
+    //MARK: - table functional
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return hotels.count
@@ -50,9 +56,18 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         currentIndex = indexPath.row
         if (hotels[currentIndex].value(forKey: "numbOfLuxRooms") as! Int == 0){
             segmentationSC.setEnabled(false, forSegmentAt: 1)
-        }
-        if (hotels[currentIndex].value(forKey: "numbOfStRooms") as! Int == 0){
+            segmentationSC.selectedSegmentIndex = 0
+            listTV.reloadData()
+            
+        } else if (hotels[currentIndex].value(forKey: "numbOfStRooms") as! Int == 0){
             segmentationSC.setEnabled(false, forSegmentAt: 0)
+            segmentationSC.selectedSegmentIndex = 1
+            listTV.reloadData()
+            
+        }else{
+            segmentationSC.setEnabled(true,forSegmentAt: 0)
+            segmentationSC.setEnabled(true,forSegmentAt: 1)
+            
         }
     }
     
@@ -70,6 +85,8 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
+    //MARK: - interface functional
+    
     @IBAction func segmentChanged(_ sender: Any) {
         let index = segmentationSC.selectedSegmentIndex
         if (index == 0){
@@ -78,19 +95,15 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         else{
             imageIV.image = UIImage(named: "hotels")
         }
+        listTV.reloadData()
     }
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
         if (currentIndex != -1) {
+            let data:String = segmentationSC.selectedSegmentIndex == 0 ? "Standard" : "Lux"
+            DataOperator.getInstance().writeToPlist(data: data, key: "typeOfRoom")
             let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapController
 
-            if (segmentationSC.selectedSegmentIndex == 0) {
-                firstVC.typeOfRoom = "Standard"
-            }
-            else {
-                firstVC.typeOfRoom = "Lux"
-            }
-            firstVC.login = login
             firstVC.hotel = hotels[currentIndex]
 
             self.navigationController?.pushViewController(firstVC, animated: true)

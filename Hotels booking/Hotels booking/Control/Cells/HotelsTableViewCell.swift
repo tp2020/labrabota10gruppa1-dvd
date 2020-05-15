@@ -8,6 +8,11 @@
 
 import UIKit
 
+/*
+   HotelsTableViewCell
+   Cell with data of hotels
+*/
+
 class HotelsTableViewCell: UITableViewCell {
     @IBOutlet weak var infoLb: UILabel!
     @IBOutlet weak var cityLb: UILabel!

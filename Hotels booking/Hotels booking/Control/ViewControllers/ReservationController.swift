@@ -9,6 +9,11 @@
 import UIKit
 import CoreData
 
+/*
+   ReservationController
+   Controller of scene with reservation desctription
+*/
+
 class ReservationController: UIViewController {
     @IBOutlet weak var transportLb: UILabel!
     @IBOutlet weak var hotelNameLb: UILabel!

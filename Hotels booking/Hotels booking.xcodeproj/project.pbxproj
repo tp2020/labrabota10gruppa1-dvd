@@ -28,6 +28,7 @@
 		7760601224675FB700DACD1B /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760601124675FB700DACD1B /* Animations.swift */; };
 		985826DF246DB1AE00698E7B /* myBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 985826DD246DB1AE00698E7B /* myBase.xcdatamodeld */; };
 		98B5C4BC246F064A0095427C /* DataOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B5C4BB246F064A0095427C /* DataOperator.swift */; };
+		98B5C4C1246F2B4D0095427C /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98B5C4C0246F2B4D0095427C /* data.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		7760601124675FB700DACD1B /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		985826DE246DB1AE00698E7B /* myBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myBase.xcdatamodel; sourceTree = "<group>"; };
 		98B5C4BB246F064A0095427C /* DataOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOperator.swift; sourceTree = "<group>"; };
+		98B5C4C0246F2B4D0095427C /* data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,16 +127,10 @@
 		77605FD52467416900DACD1B /* Hotels booking */ = {
 			isa = PBXGroup;
 			children = (
+				98B5C4BF246F2AF50095427C /* View */,
 				986E0789246D9227006324F5 /* Model */,
-				7760600E24675CDF00DACD1B /* Controllers */,
-				77605FD62467416900DACD1B /* AppDelegate.swift */,
-				77605FD82467416900DACD1B /* SceneDelegate.swift */,
-				77605FDC2467416900DACD1B /* Main.storyboard */,
-				77605FDF2467417000DACD1B /* Assets.xcassets */,
-				77605FE12467417000DACD1B /* LaunchScreen.storyboard */,
+				7760600E24675CDF00DACD1B /* Control */,
 				77605FE42467417000DACD1B /* Info.plist */,
-				7760600F24675D9400DACD1B /* UserDefaultHelper.swift */,
-				7760601124675FB700DACD1B /* Animations.swift */,
 			);
 			path = "Hotels booking";
 			sourceTree = "<group>";
@@ -157,31 +153,78 @@
 			path = "Hotels bookingUITests";
 			sourceTree = "<group>";
 		};
-		7760600E24675CDF00DACD1B /* Controllers */ = {
+		7760600E24675CDF00DACD1B /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				98B5C4BB246F064A0095427C /* DataOperator.swift */,
+				98B5C4C5246F33290095427C /* System */,
+				98B5C4C4246F33140095427C /* Delegates */,
+				98B5C4C3246F32F60095427C /* Cells */,
+				98B5C4C2246F32D50095427C /* ViewControllers */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		986E0789246D9227006324F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				77605FDF2467417000DACD1B /* Assets.xcassets */,
+				985826DD246DB1AE00698E7B /* myBase.xcdatamodeld */,
+				98B5C4C0246F2B4D0095427C /* data.plist */,
+			);
+			name = Model;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		98B5C4BF246F2AF50095427C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				77605FDC2467416900DACD1B /* Main.storyboard */,
+				77605FE12467417000DACD1B /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		98B5C4C2246F32D50095427C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				7760600C246754EA00DACD1B /* RegistrationController.swift */,
 				776060062467464700DACD1B /* LoginController.swift */,
 				773AADFF246DA4B500074827 /* MainController.swift */,
 				773AAE03246DB24100074827 /* HotelsController.swift */,
 				775A723E246DD965001D8B0C /* MapController.swift */,
 				775A7240246DF252001D8B0C /* RouteController.swift */,
+				775A7248246E045F001D8B0C /* ReservationController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		98B5C4C3246F32F60095427C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
 				775A7242246DFBF9001D8B0C /* ReservationTableViewCell.swift */,
 				775A7244246DFD2B001D8B0C /* HotelsTableViewCell.swift */,
 				775A7246246DFDBA001D8B0C /* RouteTableViewCell.swift */,
-				775A7248246E045F001D8B0C /* ReservationController.swift */,
 			);
-			path = Controllers;
+			path = Cells;
 			sourceTree = "<group>";
 		};
-		986E0789246D9227006324F5 /* Model */ = {
+		98B5C4C4246F33140095427C /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				985826DD246DB1AE00698E7B /* myBase.xcdatamodeld */,
+				77605FD62467416900DACD1B /* AppDelegate.swift */,
+				77605FD82467416900DACD1B /* SceneDelegate.swift */,
 			);
-			name = Model;
-			path = "New Group";
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		98B5C4C5246F33290095427C /* System */ = {
+			isa = PBXGroup;
+			children = (
+				7760600F24675D9400DACD1B /* UserDefaultHelper.swift */,
+				7760601124675FB700DACD1B /* Animations.swift */,
+				98B5C4BB246F064A0095427C /* DataOperator.swift */,
+			);
+			path = System;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +333,7 @@
 			files = (
 				77605FE32467417000DACD1B /* LaunchScreen.storyboard in Resources */,
 				77605FE02467417000DACD1B /* Assets.xcassets in Resources */,
+				98B5C4C1246F2B4D0095427C /* data.plist in Resources */,
 				77605FDE2467416900DACD1B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,11 @@
 import UIKit
 import CoreData
 
+/*
+    RegistrationController
+    Controller of registration scene
+ */
+
 class RegistrationController: UIViewController {
     @IBOutlet weak var imageBox: UIImageView!
     @IBOutlet weak var SignBt: UIButton!
@@ -39,7 +44,7 @@ class RegistrationController: UIViewController {
         if (passwordTF.text == passwordRepeatTF.text) {
             UserDefaultHelper.saveStringValue(key: emailTF.text!, value: passwordTF.text!)
             NSLog("registrated successfully" as String)
-            
+            DataOperator.getInstance().writeToPlist(data: emailTF.text!, key: "login")
             let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainController
             self.navigationController?.pushViewController(firstVC, animated: true)
         }

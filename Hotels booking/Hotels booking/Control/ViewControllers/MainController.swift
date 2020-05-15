@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+/*
+   MainController
+   Controller of the main scene of the app
+*/
 class MainController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     @IBOutlet weak var listTV: UITableView!
     @IBOutlet weak var createNewResrvationBt: UIButton!
@@ -21,6 +25,7 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         createNewResrvationBt.layer.cornerRadius = 12
         self.hideNavigationBar()
         
+        login = DataOperator.getInstance().readFromPlist(key: "login")
         reservations = DataOperator.getInstance().loadReservationData(forLogin: login)
         listTV.delegate = self
         listTV.dataSource = self
@@ -33,6 +38,8 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         listTV.reloadData()
     }
     	
+    //MARK: - table functional
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reservations.count
     }
@@ -65,6 +72,8 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         passData(num: indexPath.item)
     }
     
+    //MARK: - menu functional
+    
     func passData(num: Int) {
         let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "ReservationVC") as! ReservationController
         firstVC.reservation = reservations[num]
@@ -73,7 +82,6 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func createNewReservationBtPressed(_ sender: Any) {
         let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "HotelsVC") as! HotelsController
-        firstVC.login = login
         self.navigationController?.pushViewController(firstVC, animated: true)
     }
 }

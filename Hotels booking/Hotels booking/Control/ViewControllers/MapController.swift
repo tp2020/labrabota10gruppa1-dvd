@@ -10,6 +10,11 @@ import UIKit
 import MapKit
 import CoreData
 
+/*
+   MapController
+   Controller of scene, where user can choose city
+*/
+
 class MapController: UIViewController {
     @IBOutlet weak var confirmBt: UIButton!
     @IBOutlet weak var fromTF: UITextField!
@@ -18,8 +23,6 @@ class MapController: UIViewController {
     
     var hotel: NSManagedObject?
     var cityAnnotation = MKPointAnnotation()
-    var login = ""
-    var typeOfRoom = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,8 @@ class MapController: UIViewController {
         addHotelAnnotation()
         toTF.text = hotel!.value(forKey: "name") as? String
     }
+    
+    //MARK: - GUI Methods
     
     func makeStyle(){
         //confirmBt.backgroundColor = .clear
@@ -51,6 +56,8 @@ class MapController: UIViewController {
         tf.layer.addSublayer(bottomLine)
     }
     
+    //MARK: - interface functional
+    
     @IBAction func fromTFUpdated(_ sender: Any) {
         if (fromTF.text != "") {
             confirmBt.isEnabled = true
@@ -63,8 +70,6 @@ class MapController: UIViewController {
             firstVC.destinationCity = hotel!.value(forKey: "city") as! String
             firstVC.originCity = fromTF.text!
             firstVC.hotel = hotel!
-            firstVC.login = login
-            firstVC.typeOfRoom = typeOfRoom
             self.navigationController?.pushViewController(firstVC, animated: true)
         }
     }

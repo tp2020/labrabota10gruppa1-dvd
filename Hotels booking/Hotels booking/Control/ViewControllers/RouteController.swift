@@ -9,6 +9,11 @@
 import UIKit
 import CoreData
 
+/*
+   RouteController
+   Controller of route selection scene
+*/
+
 class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var confirmBt: UIButton!
     @IBOutlet weak var tableTV: UITableView!
@@ -28,12 +33,16 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
         confirmBt.layer.cornerRadius = 12
         imageIV.image = UIImage(named: "Bus")
+        login = DataOperator.getInstance().readFromPlist(key: "login")
+        typeOfRoom = DataOperator.getInstance().readFromPlist(key: "typeOfRoom")
         
         tableTV.delegate = self
         tableTV.dataSource = self
         routes = DataOperator.getInstance().loadRouteData(originCity: originCity, destinationCity: destinationCity, typeOfTransport: typeOfTransport)
         tableTV.reloadData()
     }
+    
+    //MARK: - table functional
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routes.count
@@ -64,6 +73,8 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentIndex = indexPath.row
     }
+    
+    //MARK: - interface functional
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
         if (currentIndex != -1) {
