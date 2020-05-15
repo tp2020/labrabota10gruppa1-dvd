@@ -7,17 +7,22 @@
 //
 
 import UIKit
+import CoreData
 
 class MainController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
     @IBOutlet weak var listTV: UITableView!
+    var reservations: [NSManagedObject] = []
+    var login:String = ""
 
     @IBOutlet weak var createNewResrvationBt: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         createNewResrvationBt.layer.cornerRadius = 12
         self.hideNavigationBar()
-
+        
+        loadData()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -27,26 +32,36 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        //element amounts
+        return reservations.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 90
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Existing Reservations"
+        return "Your Reservations"
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCustomCell") as! ReservationTableViewCell
+        cell.contentView.layer.cornerRadius = 15
+        cell.contentView.layer.masksToBounds = true
+        cell.contentView.layer.borderColor = UIColor.black.cgColor
+        cell.contentView.layer.borderWidth = 2
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        passData(num: indexPath.item)
+    }
+    
     func passData(num: Int) {
-        //code to switch to another view by tapping on cell (if necessary)
+        let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "ReservarionVC") as! ReservationController
+        self.navigationController?.pushViewController(firstVC, animated: true)
     }
     
     
@@ -55,10 +70,29 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationController?.pushViewController(firstVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        passData(num: indexPath.item)
-    }
     
+    func loadData(){
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext =
+          appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest =
+          NSFetchRequest<NSManagedObject>(entityName: "Hotel")
+        var tempReservations: [NSManagedObject] = []
+        do {
+            tempReservations = try managedContext.fetch(fetchRequest)
+            for reservation in tempReservations{
+                if(reservation.value(forKey: "user") as! String == login){
+                    reservations.append(reservation)
+                }
+            }
+        } catch let error as NSError {
+          print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
 
 }

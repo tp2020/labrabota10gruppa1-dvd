@@ -30,6 +30,7 @@ class LoginController: UIViewController {
             if(UserDefaultHelper.getStringValue(key: emailTF.text!)==passwordTF.text){
                 NSLog("Hello it's me" as String)
                 let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainController
+                firstVC.login = emailTF.text!
                 self.navigationController?.pushViewController(firstVC, animated: true)
             }else{
                 Animations.shake(view: passwordTF)

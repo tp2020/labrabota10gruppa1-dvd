@@ -25,17 +25,18 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let font = UIFont.systemFont(ofSize: 18)
         segmentationSC.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         self.showNavigationBar()
-
+        loadHotelData()
 
         // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //element amounts
         return 3
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 140
     }
 
     
@@ -61,7 +62,7 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Existing Reservations"
+        return "Hotels list"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -69,7 +70,16 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "hotelCustomCell") as! HotelsTableViewCell
+        let hotel = hotels[indexPath.row]
+        cell.cityLb.text = hotel.value(forKey: "city") as? String
+        cell.hotelNameLb.text = hotel.value(forKey: "name") as? String
+        cell.infoLb.text = hotel.value(forKey: "info") as? String
+        let luxPrice = hotel.value(forKey: "luxPrice") as! Int
+        let standardPrice = hotel.value(forKey: "standardPrice") as! Int
+        cell.minMaxPriceLb.text = "Standard: \(standardPrice), Lux: \(luxPrice)"
+        
         return cell
     }
     
@@ -83,5 +93,8 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
+        let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapController
+        self.navigationController?.pushViewController(firstVC, animated: true)
     }
+    
 }
