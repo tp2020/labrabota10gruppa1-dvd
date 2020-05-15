@@ -21,13 +21,16 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var hotel: NSManagedObject?
     var login = ""
     var typeOfRoom = ""
-    var typeOfTransport = "plane"
+    var typeOfTransport = "Bus"
     var currentIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         confirmBt.layer.cornerRadius = 12
+        imageIV.image = UIImage(named: "Bus")
         
+        tableTV.delegate = self
+        tableTV.dataSource = self
         routes = DataOperator.getInstance().loadRouteData(originCity: originCity, destinationCity: destinationCity, typeOfTransport: typeOfTransport)
         tableTV.reloadData()
     }
@@ -51,7 +54,7 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 140
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -66,6 +69,7 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
         if (currentIndex != -1) {
             DataOperator.getInstance().addReservation(hotel: hotel!, route: routes[currentIndex], typeOfRoom: typeOfRoom, userLogin: login)
             let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainController
+            firstVC.login = login
             self.navigationController?.pushViewController(firstVC, animated: true)
         }
     }
@@ -74,11 +78,11 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let index = segmentedSC.selectedSegmentIndex
         switch index {
         case 0:
-            typeOfTransport = "bus"
+            typeOfTransport = "Bus"
         case 1:
-            typeOfTransport = "train"
+            typeOfTransport = "Train"
         case 2:
-            typeOfTransport = "plane"
+            typeOfTransport = "Plane"
         default:
             fatalError("Impossible index in SegmentedControl!")
         }

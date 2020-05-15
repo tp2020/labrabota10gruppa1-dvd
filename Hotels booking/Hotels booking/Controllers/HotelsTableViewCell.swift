@@ -16,15 +16,9 @@ class HotelsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = UITableViewCell.SelectionStyle.none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        if (selected) {
-            cityLb.backgroundColor = UIColor.green
-        }
-        else {
-            cityLb.backgroundColor = UIColor.white
-        }
+        super.setSelected(selected, animated: animated)
     }
 }

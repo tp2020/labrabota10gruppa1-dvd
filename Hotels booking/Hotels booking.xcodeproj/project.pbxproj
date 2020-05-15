@@ -27,6 +27,7 @@
 		7760601024675D9400DACD1B /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760600F24675D9400DACD1B /* UserDefaultHelper.swift */; };
 		7760601224675FB700DACD1B /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760601124675FB700DACD1B /* Animations.swift */; };
 		985826DF246DB1AE00698E7B /* myBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 985826DD246DB1AE00698E7B /* myBase.xcdatamodeld */; };
+		98B5C4BC246F064A0095427C /* DataOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B5C4BB246F064A0095427C /* DataOperator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		7760600F24675D9400DACD1B /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 		7760601124675FB700DACD1B /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		985826DE246DB1AE00698E7B /* myBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myBase.xcdatamodel; sourceTree = "<group>"; };
+		98B5C4BB246F064A0095427C /* DataOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOperator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +135,6 @@
 				77605FE42467417000DACD1B /* Info.plist */,
 				7760600F24675D9400DACD1B /* UserDefaultHelper.swift */,
 				7760601124675FB700DACD1B /* Animations.swift */,
-				843F0870246DD30800BAFD5A /* myBase.xcdatamodeld */,
 			);
 			path = "Hotels booking";
 			sourceTree = "<group>";
@@ -159,6 +160,7 @@
 		7760600E24675CDF00DACD1B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				98B5C4BB246F064A0095427C /* DataOperator.swift */,
 				7760600C246754EA00DACD1B /* RegistrationController.swift */,
 				776060062467464700DACD1B /* LoginController.swift */,
 				773AADFF246DA4B500074827 /* MainController.swift */,
@@ -316,6 +318,7 @@
 				776060072467464700DACD1B /* LoginController.swift in Sources */,
 				773AAE00246DA4B500074827 /* MainController.swift in Sources */,
 				7760601024675D9400DACD1B /* UserDefaultHelper.swift in Sources */,
+				98B5C4BC246F064A0095427C /* DataOperator.swift in Sources */,
 				7760601224675FB700DACD1B /* Animations.swift in Sources */,
 				775A7243246DFBF9001D8B0C /* ReservationTableViewCell.swift in Sources */,
 				77605FD72467416900DACD1B /* AppDelegate.swift in Sources */,

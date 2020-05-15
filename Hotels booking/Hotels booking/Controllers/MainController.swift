@@ -22,12 +22,15 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.hideNavigationBar()
         
         reservations = DataOperator.getInstance().loadReservationData(forLogin: login)
-        listTV.reloadData()
+        listTV.delegate = self
+        listTV.dataSource = self
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         self.hideNavigationBar()
+        listTV.reloadData()
     }
     	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,10 +53,10 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.contentView.layer.borderWidth = 2
         
         let reservation = reservations[indexPath.row]
-        cell.cityLb.text = ((reservation.value(forKey: "hotel") as! NSSet).value(forKey: "city") as! String)
+        cell.cityLb.text = ((reservation.value(forKey: "hotel") as! NSManagedObject).value(forKey: "city") as! String)
         cell.dateLb.text = (reservation.value(forKey: "time") as! String)
-        cell.hotelNameLb.text = ((reservation.value(forKey: "hotel") as! NSSet).value(forKey: "name") as! String)
-        cell.priceLb.text = (reservation.value(forKey: "totalPrice") as! String)
+        cell.hotelNameLb.text = ((reservation.value(forKey: "hotel") as! NSManagedObject).value(forKey: "name") as! String)
+        cell.priceLb.text = String(reservation.value(forKey: "totalPrice") as! Int)
         return cell
     }
     
@@ -63,7 +66,7 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func passData(num: Int) {
-        let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "ReservarionVC") as! ReservationController
+        let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "ReservationVC") as! ReservationController
         firstVC.reservation = reservations[num]
         self.navigationController?.pushViewController(firstVC, animated: true)
     }

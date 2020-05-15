@@ -23,10 +23,11 @@ class RegistrationController: UIViewController {
         self.hideNavigationBar()
         createAccountBt.layer.cornerRadius = 14
         
-        let dataOperator = DataOperator.getInstance()
-        dataOperator.deleteAllData(forEntity: "Hotel")
-        dataOperator.deleteAllData(forEntity: "Route")
-        dataOperator.fillDatabase()
+        //let dataOperator = DataOperator.getInstance()
+        //dataOperator.deleteAllData(forEntity: "Reservation")
+        //dataOperator.deleteAllData(forEntity: "Hotel")
+        //dataOperator.deleteAllData(forEntity: "Route")
+        //dataOperator.fillDatabase()
     }
     
     @IBAction func signInPressed(_ sender: Any) {

@@ -29,6 +29,7 @@ class ReservationController: UIViewController {
         super.viewDidLoad()
         
         self.showNavigationBar()
+        updateElements()
     }
     
     func updateElements() {
@@ -43,7 +44,7 @@ class ReservationController: UIViewController {
         toLb.text = route.value(forKey: "cityTo") as? String
         arriveLb.text = route.value(forKey: "timeOfArrive") as? String
         descriptionLb.text = hotel.value(forKey: "descriptions") as? String
-        totalPriceLb.text = String(hotel.value(forKey: "totalPrice") as! Int)
+        totalPriceLb.text = String(reservation.value(forKey: "totalPrice") as! Int)
         transportLb.text = reservation.value(forKey: "typeOfRoom") as? String
     }
 }

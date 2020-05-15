@@ -90,7 +90,6 @@ class MapController: UIViewController {
     @IBAction func mapTapped(_ sender: Any) {
         let touchLocation = (sender as! UITapGestureRecognizer).location(in: mapMC)
         let tapCoordinate = mapMC.convert(touchLocation, toCoordinateFrom: mapMC)
-        var cityFromName: String!
         CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: tapCoordinate.latitude, longitude: tapCoordinate.longitude),
                                             completionHandler: {(placemarks, error)  in
                                                                 if (error != nil) {
@@ -100,13 +99,15 @@ class MapController: UIViewController {
                                                                 if (placemarks!.count > 0) {
                                                                     let placemark = placemarks![0]
                                                                     self.fromTF.text = placemark.locality
+                                                                    if (self.mapMC.annotations.count > 1) {
+                                                                        self.mapMC.removeAnnotation(self.cityAnnotation)
+                                                                    }
+                                                                    self.cityAnnotation.coordinate = tapCoordinate
+                                                                    self.cityAnnotation.title = self.fromTF.text
+                                                                    self.mapMC.addAnnotation(self.cityAnnotation)
+                                                                    if(self.cityAnnotation.title != ""){
+                                                                        self.confirmBt.isEnabled = true
+                                                                    }
                                                                 }})
-        cityFromName = fromTF.text
-        if (mapMC.annotations.count > 1) {
-            mapMC.removeAnnotation(cityAnnotation)
-        }
-        cityAnnotation.coordinate = tapCoordinate
-        cityAnnotation.title = cityFromName
-        mapMC.addAnnotation(cityAnnotation)
     }
 }

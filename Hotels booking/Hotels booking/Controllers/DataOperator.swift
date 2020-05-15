@@ -163,6 +163,12 @@ class DataOperator {
         addRoute(transportType: "Bus", cityFrom: "Riga", cityTo: "Izmir", price: 111, time: "2020-05-15 14:17", timeOfArrive: "2020-05-17 09:48", numbOfTickets: 60, company: "Minoblautotrans")
         addRoute(transportType: "Bus", cityFrom: "Minsk", cityTo: "Naples", price: 96, time: "2020-05-12 13:35", timeOfArrive: "2020-05-14 03:47", numbOfTickets: 53, company: "Minoblautotrans")
         addRoute(transportType: "Bus", cityFrom: "Vilnius", cityTo: "Naples", price: 127, time: "2020-05-16 13:17", timeOfArrive: "2020-05-18 08:22", numbOfTickets: 17, company: "Ecolines")
+        addRoute(transportType: "Bus", cityFrom: "Vilnius", cityTo: "Barcelona", price: 127, time: "2020-05-12 13:35", timeOfArrive: "2020-05-16 18:14", numbOfTickets: 17, company: "Ecolines")
+        addRoute(transportType: "Train", cityFrom: "Kyiv", cityTo: "Barcelona", price: 127, time: "2020-05-18 08:22", timeOfArrive: "2020-05-21 19:42", numbOfTickets: 17, company: "Ukrzalyznitsa")
+        addRoute(transportType: "Plane", cityFrom: "Moscow", cityTo: "Barcelona", price: 127, time: "2020-05-16 13:17", timeOfArrive: "2020-05-16 16:01", numbOfTickets: 17, company: "Aeroflot")
+        addRoute(transportType: "Plane", cityFrom: "Minsk", cityTo: "Thessaloniki", price: 180, time: "2020-05-09 09:34", timeOfArrive: "2020-05-09 11:01", numbOfTickets: 45, company: "Belavia")
+        addRoute(transportType: "Train", cityFrom: "Minsk", cityTo: "Kaliningrad", price: 75, time: "2020-05-17 08:16", timeOfArrive: "2020-05-18 18:01", numbOfTickets: 50, company: "BelZhD")
+        addRoute(transportType: "Bus", cityFrom: "Moscow", cityTo: "Lviv", price: 35, time: "2020-05-13 16:18", timeOfArrive: "2020-05-15 20:06", numbOfTickets: 5, company: "Ecolines")
     }
     
     func loadReservationData(forLogin login: String) -> [NSManagedObject] {
@@ -207,7 +213,9 @@ class DataOperator {
                       .filter({(object) -> Bool in
                               object.value(forKey: "cityFrom") as? String == originCity &&
                               object.value(forKey: "cityTo") as? String == destinationCity &&
-                              (object.value(forKey: "transport") as! NSManagedObject).value(forKey: "type") as! String == typeOfTransport})
+                              (object.value(forKey: "transport") as! NSManagedObject).value(forKey: "type") as! String == typeOfTransport &&
+                        (object.value(forKey: "numbOfTickets") as! Int) != 0
+                      })
         }
         catch let error as NSError {
             fatalError("Can't retrieve routes: \(error)")
@@ -222,15 +230,19 @@ class DataOperator {
         var totalPrice: Int = 0
         if typeOfRoom == "lux" {
             totalPrice = hotel.value(forKey: "luxPrice") as! Int
+            hotel.setValue(hotel.value(forKey: "numbOfLuxRooms") as! Int, forKey: "numbOfLuxRooms")
         }
         else {
             totalPrice = hotel.value(forKey: "standardPrice") as! Int
+            hotel.setValue(hotel.value(forKey: "numbOfStRooms") as! Int, forKey: "numbOfStRooms")
         }
+        
+        route.setValue(route.value(forKey: "numbOfTickets") as! Int, forKey: "numbOfTickets")
         totalPrice = totalPrice + (route.value(forKey: "price") as! Int)
         reservation.setValue(totalPrice,forKey: "totalPrice")
         reservation.setValue(typeOfRoom, forKey: "typeOfRoom")
-        reservation.mutableSetValue(forKey: "hotel").add(hotel)
-        reservation.mutableSetValue(forKey: "route").add(route)
+        reservation.setValue(hotel,forKey: "hotel")
+        reservation.setValue(route,forKey: "route")
         let date = Date()
         let formatter = DateFormatter()
         let dateString = formatter.string(from: date)
@@ -239,6 +251,7 @@ class DataOperator {
         
         do {
             try managedContext.save()
+            NSLog("reservation created successfully")
         }
         catch let error as NSError {
             fatalError("Could not save. \(error), \(error.userInfo)")
