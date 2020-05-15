@@ -45,7 +45,7 @@ class ReservationController: UIViewController {
         arriveLb.text = route.value(forKey: "timeOfArrive") as? String
         descriptionLb.text = hotel.value(forKey: "descriptions") as? String
         totalPriceLb.text = String(hotel.value(forKey: "totalPrice") as! Int)
-        //transportLb.text =
+        transportLb.text = reservation.value(forKey: "typeOfRoom") as? String
     }
 
     /*
