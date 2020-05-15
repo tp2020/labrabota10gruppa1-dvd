@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var listTV: UITableView!
@@ -14,6 +15,10 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var confirmBt: UIButton!
     
     @IBOutlet weak var imageIV: UIImageView!
+    
+    var currentIndex: Int = -1
+    var hotels = [NSManagedObject]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         confirmBt.layer.cornerRadius = 12
@@ -32,17 +37,42 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+
+    
+    func loadHotelData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            else {
+                return
+            }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Hotel")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "city", ascending: true)]
+        var requestHotels = [NSManagedObject]()
+        
+        do {
+            requestHotels = try managedContext.fetch(fetchRequest)
+            hotels += requestHotels
+        }
+        catch let error as NSError {
+            print("Can't retrieve hotels: \(error)")
+        }
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Existing Reservations"
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentIndex = indexPath.row
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
-
         return cell
     }
+    
     @IBAction func segmentChanged(_ sender: Any) {
         let index = segmentationSC.selectedSegmentIndex
         if(index == 0){

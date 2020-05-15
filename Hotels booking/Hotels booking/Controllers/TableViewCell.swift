@@ -12,13 +12,15 @@ class TableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = UITableViewCell.SelectionStyle.none
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if (highlighted) {
+            textLabel?.backgroundColor = UIColor.green
+        }
+        else {
+            textLabel?.backgroundColor = UIColor.white
+        }
     }
-
 }
