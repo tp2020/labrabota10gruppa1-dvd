@@ -15,13 +15,14 @@ class MapController: UIViewController {
     @IBOutlet weak var fromTF: UITextField!
     @IBOutlet weak var toTF: UITextField!
     @IBOutlet weak var mapMC: MKMapView!
+    let hotelPlaceName:String = ""
+    let hotelName:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showNavigationBar()
         makeStyle()
-        
-        // Do any additional setup after loading the view.
+        addHotelAnnotation()
     }
     
     func makeStyle(){
@@ -57,6 +58,43 @@ class MapController: UIViewController {
         self.navigationController?.pushViewController(firstVC, animated: true)
     }
     
+    //MARK: - map functional
+    
+    func addHotelAnnotation(){
+        let hotelAnnotation = MKPointAnnotation()
+        CLGeocoder().geocodeAddressString(hotelPlaceName, completionHandler: {(placemarks,error)->Void  in
+            if(error != nil){
+                print("Geocoder failed with error "+error!.localizedDescription)
+                return
+            }
+            if(placemarks!.count>0){
+                let pm = placemarks![0]
+                hotelAnnotation.coordinate = pm.location!.coordinate
+            }
+            })
+        hotelAnnotation.title = hotelName
+        mapMC.addAnnotation(hotelAnnotation)
+    }
 
-
+    @IBAction func mapTapped(_ sender: Any) {
+        let touchLocation = (sender as! UITapGestureRecognizer).location(in: mapMC)
+        let tapCoordinate = mapMC.convert(touchLocation, toCoordinateFrom: mapMC)
+        var cityFromName:String = ""
+        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: tapCoordinate.latitude, longitude: tapCoordinate.longitude), completionHandler: {(placemarks,error)->Void  in
+        if(error != nil){
+            print("Geocoder failed with error "+error!.localizedDescription)
+            return
+        }
+        if(placemarks!.count>0){
+            let pm = placemarks![0]
+            cityFromName = pm.name ?? ""
+        }
+        })
+        fromTF.text = cityFromName
+        let destinationAnnotation = MKPointAnnotation()
+        destinationAnnotation.coordinate = tapCoordinate
+        destinationAnnotation.title = cityFromName
+        mapMC.addAnnotation(destinationAnnotation)
+    }
+    
 }
