@@ -95,6 +95,7 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
         let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapController
+        
         self.navigationController?.pushViewController(firstVC, animated: true)
     }
     
