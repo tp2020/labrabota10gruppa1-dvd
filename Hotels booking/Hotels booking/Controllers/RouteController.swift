@@ -19,11 +19,16 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var originCity: String = ""
     var destinationCity: String = ""
     var routes: [NSManagedObject] = []
+    var hotel = NSManagedObject()
+    var login = ""
+    var currentIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         confirmBt.layer.cornerRadius = 12
+        loadRouteData()
+        tableTV.reloadData()
         // Do any additional setup after loading the view.
     }
     
@@ -53,7 +58,7 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //element amounts
-        return 3
+        return routes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,9 +74,17 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Hotels list"
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentIndex = indexPath.row
+    }
+    
     @IBAction func confirmButtonPressed(_ sender: Any) {
-        let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainController
-        self.navigationController?.pushViewController(firstVC, animated: true)
+        if(currentIndex != -1){
+            addReservation(hotel: hotel, route: routes[currentIndex], typeOfRoom: <#T##String#>, userLogin: login)
+            let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainController
+            self.navigationController?.pushViewController(firstVC, animated: true)
+        }
     }
     
     @IBAction func segmentedChanged(_ sender: Any) {
@@ -87,5 +100,41 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
-    
+    func addReservation(hotel:NSManagedObject,route:NSManagedObject,typeOfRoom:String, userLogin:String){
+           guard let appDelegate =
+                   UIApplication.shared.delegate as? AppDelegate else {
+                   return
+                 }
+           let managedContext =
+             appDelegate.persistentContainer.viewContext
+           
+           let entity =
+                   NSEntityDescription.entity(forEntityName: "Reservation",
+                                              in: managedContext)!
+           let reservation = NSManagedObject(entity: entity,
+           insertInto: managedContext)
+
+           var totalPrice:Int = 0
+           if(typeOfRoom == "lux"){
+               totalPrice = hotel.value(forKey: "luxPrice") as! Int
+           }
+           else{
+               totalPrice = hotel.value(forKey: "standardPrice") as! Int
+           }
+           totalPrice = totalPrice + (route.value(forKey: "price") as! Int)
+           reservation.setValue(totalPrice,forKey: "totalPrice")
+           reservation.setValue(typeOfRoom, forKey: "typeOfRoom")
+           reservation.mutableSetValue(forKey: "hotel").add(hotel)
+           reservation.mutableSetValue(forKey: "route").add(route)
+           let date = Date()
+           let formatter = DateFormatter()
+           let dateString = formatter.string(from: date)
+           reservation.setValue(dateString,forKey: "time")
+           reservation.setValue(userLogin,forKey: "user")
+           do {
+             try managedContext.save()
+           } catch let error as NSError {
+             print("Could not save. \(error), \(error.userInfo)")
+           }
+       }
 }

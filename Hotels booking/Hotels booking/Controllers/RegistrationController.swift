@@ -23,6 +23,7 @@ class RegistrationController: UIViewController {
         super.viewDidLoad()
         self.hideNavigationBar()
         createAccountBt.layer.cornerRadius = 14
+        fill_database()
         // Do any additional setup after loading the view.
     }
     
@@ -68,6 +69,59 @@ class RegistrationController: UIViewController {
         addHotel(name: "Hotel Florida",descriptions: "Charming hotel in the capital of the country",country: "Ukraine",city: "Kiev",numbOfLuxRooms: 6,numbOfStRooms: 32,luxPrice: 780,standardPrice: 410);
         
         
+        
+
+        addRoute(transportType: "Bus", cityFrom: "Warsaw", cityTo: "Valencia", price: 76, time: "2020-05-17 17:28", timeOfArrive: "2020-05-20 13:35", numbOfTickets: 100, company: "Minoblautotrans")
+        addRoute(transportType: "Plane", cityFrom: "Warsaw", cityTo: "Venice", price: 16, time: "2020-05-12 11:30", timeOfArrive: "2020-05-12 13:23", numbOfTickets: 99, company: "Belavia")
+        addRoute(transportType: "Bus", cityFrom: "Warsaw", cityTo: "Madrid", price: 67, time: "2020-05-14 15:27", timeOfArrive: "2020-05-17 16:45", numbOfTickets: 95, company: "Ecolines")
+        addRoute(transportType: "Train", cityFrom: "Warsaw", cityTo: "Naples", price: 123, time: "2020-05-18 14:16", timeOfArrive: "2020-05-21 13:54", numbOfTickets: 72, company: "PKP")
+        addRoute(transportType: "Train", cityFrom: "Tallinn", cityTo: "Anapa", price: 119, time: "2020-05-13 16:20", timeOfArrive: "2020-05-15 09:01", numbOfTickets: 46, company: "Eesti Raudtee")
+        addRoute(transportType: "Bus", cityFrom: "Minsk", cityTo: "Herceg Novi", price: 93, time: "2020-05-14 15:23", timeOfArrive: "2020-05-16 03:00", numbOfTickets: 43, company: "Ivan Susanin LLC")
+        addRoute(transportType: "Bus", cityFrom: "Vilnius", cityTo: "Herceg Novi", price: 86, time: "2020-05-17 12:22", timeOfArrive: "2020-05-19 06:15", numbOfTickets: 31, company: "Minoblautotrans")
+        addRoute(transportType: "Train", cityFrom: "Minsk", cityTo: "Sochi", price: 147, time: "2020-05-12 14:20", timeOfArrive: "2020-05-14 13:41", numbOfTickets: 71, company: "BelZhD")
+        addRoute(transportType: "Plane", cityFrom: "Vilnius", cityTo: "Antalya", price: 141, time: "2020-05-17 17:16", timeOfArrive: "2020-05-17 18:41", numbOfTickets: 43, company: "Belavia")
+        addRoute(transportType: "Plane", cityFrom: "Vilnius", cityTo: "Istanbul", price: 59, time: "2020-05-17 17:34", timeOfArrive: "2020-05-17 19:45", numbOfTickets: 11, company: "Lufthansa")
+        addRoute(transportType: "Train", cityFrom: "Riga", cityTo: "Odesa", price: 66, time: "2020-05-12 17:33", timeOfArrive: "2020-05-14 01:15", numbOfTickets: 44, company: "Latvian Railways")
+        addRoute(transportType: "Plane", cityFrom: "Tallinn", cityTo: "Kyiv", price: 53, time: "2020-05-18 08:19", timeOfArrive: "2020-05-18 08:55", numbOfTickets: 82, company: "Ryanair")
+        addRoute(transportType: "Train", cityFrom: "Minsk", cityTo: "Venice", price: 42, time: "2020-05-12 12:17", timeOfArrive: "2020-05-14 13:33", numbOfTickets: 32, company: "BelZhD")
+        addRoute(transportType: "Plane", cityFrom: "Warsaw", cityTo: "Izmir", price: 88, time: "2020-05-14 11:24", timeOfArrive: "2020-05-14 13:24", numbOfTickets: 52, company: "Aeroflot")
+        addRoute(transportType: "Plane", cityFrom: "Vilnius", cityTo: "Valencia", price: 122, time: "2020-05-13 16:30", timeOfArrive: "2020-05-13 19:45", numbOfTickets: 37, company: "Wizzair")
+        addRoute(transportType: "Train", cityFrom: "Moscow", cityTo: "Valencia", price: 102, time: "2020-05-13 14:25", timeOfArrive: "2020-05-17 05:01", numbOfTickets: 19, company: "RZhD")
+        addRoute(transportType: "Train", cityFrom: "Riga", cityTo: "Venice", price: 56, time: "2020-05-15 12:31", timeOfArrive: "2020-05-17 13:01", numbOfTickets: 15, company: "Latvian Railways")
+        addRoute(transportType: "Plane", cityFrom: "Riga", cityTo: "Kyiv", price: 33, time: "2020-05-12 10:26", timeOfArrive: "2020-05-12 10:59", numbOfTickets: 63, company: "Belavia")
+        addRoute(transportType: "Train", cityFrom: "Vilnius", cityTo: "Antalya", price: 83, time: "2020-05-16 10:30", timeOfArrive: "2020-05-18 16:24", numbOfTickets: 40, company: "Lithuanian Railways")
+        addRoute(transportType: "Plane", cityFrom: "Vilnius", cityTo: "Venice", price: 35, time: "2020-05-16 12:32", timeOfArrive: "2020-05-16 14:42", numbOfTickets: 22, company: "Belavia")
+        addRoute(transportType: "Plane", cityFrom: "Minsk", cityTo: "Moscow", price: 29, time: "2020-05-14 10:19", timeOfArrive: "2020-05-14 11:08", numbOfTickets: 43, company: "Aeroflot")
+        addRoute(transportType: "Bus", cityFrom: "Moscow", cityTo: "Sochi", price: 126, time: "2020-05-14 11:34", timeOfArrive: "2020-05-15 22:37", numbOfTickets: 28, company: "Ivan Susanin LLC")
+
+        addRoute(transportType: "Bus", cityFrom: "Minsk", cityTo: "Anapa", price: 62, time: "2020-05-17 17:20", timeOfArrive: "2020-05-19 00:10", numbOfTickets: 48, company: "Minoblautotrans")
+        addRoute(transportType: "Train", cityFrom: "Minsk", cityTo: "Thessaloniki", price: 100, time: "2020-05-18 12:34", timeOfArrive: "2020-05-20 22:31", numbOfTickets: 24, company: "BelZhD")
+        addRoute(transportType: "Plane", cityFrom: "Vilnius", cityTo: "Podgorica", price: 47, time: "2020-05-13 08:22", timeOfArrive: "2020-05-13 10:10", numbOfTickets: 94, company: "Lufthansa")
+        addRoute(transportType: "Bus", cityFrom: "Minsk", cityTo: "Thessaloniki", price: 48, time: "2020-05-17 08:35", timeOfArrive: "2020-05-19 01:51", numbOfTickets: 18, company: "Ecolines")
+        addRoute(transportType: "Plane", cityFrom: "Kyiv", cityTo: "Sochi", price: 125, time: "2020-05-17 15:16", timeOfArrive: "2020-05-17 16:39", numbOfTickets: 36, company: "Ryanair")
+        addRoute(transportType: "Plane", cityFrom: "Tallinn", cityTo: "Valencia", price: 31, time: "2020-05-18 10:23", timeOfArrive: "2020-05-18 13:49", numbOfTickets: 56, company: "Wizzair")
+        addRoute(transportType: "Train", cityFrom: "Vilnius", cityTo: "Sochi", price: 140, time: "2020-05-12 15:25", timeOfArrive: "2020-05-14 10:49", numbOfTickets: 86, company: "Lithuanian Railways")
+        addRoute(transportType: "Bus", cityFrom: "Vilnius", cityTo: "Kyiv", price: 50, time: "2020-05-12 17:20", timeOfArrive: "2020-05-13 01:58", numbOfTickets: 63, company: "Minoblautotrans")
+        addRoute(transportType: "Plane", cityFrom: "Kyiv", cityTo: "Sochi", price: 115, time: "2020-05-18 16:24", timeOfArrive: "2020-05-18 17:58", numbOfTickets: 49, company: "Belavia")
+        addRoute(transportType: "Plane", cityFrom: "Kyiv", cityTo: "Podgorica", price: 103, time: "2020-05-14 16:28", timeOfArrive: "2020-05-14 18:30", numbOfTickets: 37, company: "Wizzair")
+        addRoute(transportType: "Plane", cityFrom: "Warsaw", cityTo: "Naples", price: 32, time: "2020-05-16 10:24", timeOfArrive: "2020-05-16 12:13", numbOfTickets: 17, company: "Aeroflot")
+        addRoute(transportType: "Plane", cityFrom: "Tallinn", cityTo: "Ulcinj", price: 18, time: "2020-05-16 11:24", timeOfArrive: "2020-05-16 13:41", numbOfTickets: 18, company: "Ryanair")
+        addRoute(transportType: "Plane", cityFrom: "Riga", cityTo: "Odesa", price: 20, time: "2020-05-13 08:20", timeOfArrive: "2020-05-13 09:05", numbOfTickets: 64, company: "Turkish Airlines")
+        addRoute(transportType: "Train", cityFrom: "Riga", cityTo: "Herceg Novi", price: 21, time: "2020-05-17 08:29", timeOfArrive: "2020-05-19 06:00", numbOfTickets: 13, company: "Latvian Railways")
+        addRoute(transportType: "Plane", cityFrom: "Minsk", cityTo: "Sochi", price: 100, time: "2020-05-16 14:28", timeOfArrive: "2020-05-16 15:38", numbOfTickets: 31, company: "Lufthansa")
+        addRoute(transportType: "Plane", cityFrom: "Warsaw", cityTo: "Kyiv", price: 56, time: "2020-05-18 07:18", timeOfArrive: "2020-05-18 07:48", numbOfTickets: 86, company: "Wizzair")
+        addRoute(transportType: "Train", cityFrom: "Tallinn", cityTo: "Moscow", price: 59, time: "2020-05-16 14:35", timeOfArrive: "2020-05-17 13:09", numbOfTickets: 71, company: "Eesti Raudtee")
+        addRoute(transportType: "Plane", cityFrom: "Kyiv", cityTo: "Madrid", price: 76, time: "2020-05-15 15:31", timeOfArrive: "2020-05-15 18:25", numbOfTickets: 71, company: "Lufthansa")
+        addRoute(transportType: "Train", cityFrom: "Tallinn", cityTo: "Sochi", price: 15, time: "2020-05-15 10:28", timeOfArrive: "2020-05-17 03:07", numbOfTickets: 43, company: "Eesti Raudtee")
+        addRoute(transportType: "Bus", cityFrom: "Vilnius", cityTo: "Venice", price: 149, time: "2020-05-18 17:28", timeOfArrive: "2020-05-20 03:20", numbOfTickets: 85, company: "Ecolines")
+        addRoute(transportType: "Plane", cityFrom: "Kyiv", cityTo: "Herceg Novi", price: 101, time: "2020-05-15 17:20", timeOfArrive: "2020-05-15 19:24", numbOfTickets: 66, company: "Turkish Airlines")
+        addRoute(transportType: "Train", cityFrom: "Tallinn", cityTo: "Madrid", price: 75, time: "2020-05-12 15:35", timeOfArrive: "2020-05-16 20:10", numbOfTickets: 27, company: "Eesti Raudtee")
+
+        addRoute(transportType: "Bus", cityFrom: "Tallinn", cityTo: "Valencia", price: 39, time: "2020-05-16 11:35", timeOfArrive: "2020-05-19 00:13", numbOfTickets: 74, company: "Ivan Susanin LLC")
+        addRoute(transportType: "Bus", cityFrom: "Moscow", cityTo: "Venice", price: 115, time: "2020-05-17 10:17", timeOfArrive: "2020-05-18 17:10", numbOfTickets: 96, company: "Minoblautotrans")
+        addRoute(transportType: "Bus", cityFrom: "Riga", cityTo: "Izmir", price: 111, time: "2020-05-15 14:17", timeOfArrive: "2020-05-17 09:48", numbOfTickets: 60, company: "Minoblautotrans")
+        addRoute(transportType: "Bus", cityFrom: "Minsk", cityTo: "Naples", price: 96, time: "2020-05-12 13:35", timeOfArrive: "2020-05-14 03:47", numbOfTickets: 53, company: "Minoblautotrans")
+        addRoute(transportType: "Bus", cityFrom: "Vilnius", cityTo: "Naples", price: 127, time: "2020-05-16 13:17", timeOfArrive: "2020-05-18 08:22", numbOfTickets: 17, company: "Ecolines")
     }
     
     func addHotel(name:String,descriptions:String,country:String,city:String,numbOfLuxRooms:Int,numbOfStRooms:Int,luxPrice:Int,
@@ -99,7 +153,7 @@ class RegistrationController: UIViewController {
         }
     }
     
-    func addRoute(transportType:String,cityFrom:String,cityTo:String,price:Int,time:String,timeOfArrive:String,numbOfTickets:Int){
+    func addRoute(transportType:String,cityFrom:String,cityTo:String,price:Int,time:String,timeOfArrive:String,numbOfTickets:Int,company:String){
         guard let appDelegate =
                 UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -116,6 +170,7 @@ class RegistrationController: UIViewController {
         route.setValue(cityTo,forKey: "cityTo")
         route.setValue(time,forKey: "time")
         route.setValue(timeOfArrive,forKey: "timeOfArrive")
+        route.setValue(company, forKey: "company")
         route.setValue(price,forKey: "Price")
         route.setValue(numbOfTickets,forKey: "numbOfTickets")
         let entityTransport =
@@ -125,44 +180,6 @@ class RegistrationController: UIViewController {
                                       insertInto: managedContext)
         transport.setValue(transportType, forKey: "type")
         route.mutableSetValue(forKey: "transport").add(transport)
-        do {
-          try managedContext.save()
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
-    func addReservation(hotel:NSManagedObject,route:NSManagedObject,typeOfRoom:String, userLogin:String){
-        guard let appDelegate =
-                UIApplication.shared.delegate as? AppDelegate else {
-                return
-              }
-        let managedContext =
-          appDelegate.persistentContainer.viewContext
-        
-        let entity =
-                NSEntityDescription.entity(forEntityName: "Reservation",
-                                           in: managedContext)!
-        let reservation = NSManagedObject(entity: entity,
-        insertInto: managedContext)
-
-        var totalPrice:Int = 0
-        if(typeOfRoom == "lux"){
-            totalPrice = hotel.value(forKey: "luxPrice") as! Int
-        }
-        else{
-            totalPrice = hotel.value(forKey: "standardPrice") as! Int
-        }
-        totalPrice = totalPrice + (route.value(forKey: "price") as! Int)
-        reservation.setValue(totalPrice,forKey: "totalPrice")
-        reservation.setValue(typeOfRoom, forKey: "typeOfRoom")
-        reservation.mutableSetValue(forKey: "hotel").add(hotel)
-        reservation.mutableSetValue(forKey: "route").add(route)
-        let date = Date()
-        let formatter = DateFormatter()
-        let dateString = formatter.string(from: date)
-        reservation.setValue(dateString,forKey: "time")
-        reservation.setValue(userLogin,forKey: "user")
         do {
           try managedContext.save()
         } catch let error as NSError {

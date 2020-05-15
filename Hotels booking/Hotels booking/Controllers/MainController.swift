@@ -22,7 +22,7 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.hideNavigationBar()
         
         loadData()
-        
+        listTV.reloadData()
         // Do any additional setup after loading the view.
     }
     
@@ -51,6 +51,12 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.contentView.layer.masksToBounds = true
         cell.contentView.layer.borderColor = UIColor.black.cgColor
         cell.contentView.layer.borderWidth = 2
+        
+        let reservation = reservations[indexPath.row]
+        cell.cityLb.text = ((reservation.value(forKey: "hotel") as! NSSet).value(forKey: "city") as! String)
+        cell.dateLb.text = (reservation.value(forKey: "time") as! String)
+        cell.hotelNameLb.text = ((reservation.value(forKey: "hotel") as! NSSet).value(forKey: "name") as! String)
+        cell.priceLb.text = (reservation.value(forKey: "totalPrice") as! String)
         return cell
     }
     
@@ -61,12 +67,14 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func passData(num: Int) {
         let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "ReservarionVC") as! ReservationController
+        firstVC.reservation = reservations[num]
         self.navigationController?.pushViewController(firstVC, animated: true)
     }
     
     
     @IBAction func createNewReservationBtPressed(_ sender: Any) {
         let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "HotelsVC") as! HotelsController
+        firstVC.login = login
         self.navigationController?.pushViewController(firstVC, animated: true)
     }
     

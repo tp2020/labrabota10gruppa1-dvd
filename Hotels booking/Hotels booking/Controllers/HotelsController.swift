@@ -18,6 +18,7 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var currentIndex: Int = -1
     var hotels = [NSManagedObject]()
+    var login = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +27,13 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         segmentationSC.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         self.showNavigationBar()
         loadHotelData()
-
+        listTV.reloadData()
         // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //element amounts
-        return 3
+        return hotels.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
