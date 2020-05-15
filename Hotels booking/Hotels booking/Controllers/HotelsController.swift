@@ -55,7 +55,9 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         do {
             requestHotels = try managedContext.fetch(fetchRequest)
-            hotels += requestHotels
+            hotels += requestHotels.filter({(object) -> Bool in
+                                        object.value(forKey: "numbOfStRooms") as? Int != 0 ||
+                                            object.value(forKey: "numbOfLuxRooms") as? Int != 0})
         }
         catch let error as NSError {
             print("Can't retrieve hotels: \(error)")
@@ -68,6 +70,12 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentIndex = indexPath.row
+        if(hotels[currentIndex].value(forKey: "numbOfLuxRooms") as! Int == 0){
+            segmentationSC.setEnabled(false, forSegmentAt: 1)
+        }
+        if(hotels[currentIndex].value(forKey: "numbOfStRooms") as! Int == 0){
+            segmentationSC.setEnabled(false, forSegmentAt: 0)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,6 +103,13 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
         let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapController
+        if(segmentationSC.selectedSegmentIndex == 0){
+            firstVC.typeOfRoom = "Standard"
+        }
+        else{
+            firstVC.typeOfRoom = "Lux"
+        }
+        firstVC.login = login
         self.navigationController?.pushViewController(firstVC, animated: true)
     }
     

@@ -21,6 +21,7 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var routes: [NSManagedObject] = []
     var hotel = NSManagedObject()
     var login = ""
+    var typeOfRoom = ""
     var currentIndex = -1
     
     override func viewDidLoad() {
@@ -63,7 +64,7 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "routeCustomCell") as! RouteTableViewCell
-
+        
         return cell
     }
     
@@ -81,7 +82,7 @@ class RouteController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBAction func confirmButtonPressed(_ sender: Any) {
         if(currentIndex != -1){
-            addReservation(hotel: hotel, route: routes[currentIndex], typeOfRoom: <#T##String#>, userLogin: login)
+            addReservation(hotel: hotel, route: routes[currentIndex], typeOfRoom: typeOfRoom, userLogin: login)
             let firstVC = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainController
             self.navigationController?.pushViewController(firstVC, animated: true)
         }
