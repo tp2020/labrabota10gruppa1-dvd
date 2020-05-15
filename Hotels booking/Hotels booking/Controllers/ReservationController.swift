@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 class ReservationController: UIViewController {
-    
     @IBOutlet weak var transportLb: UILabel!
     @IBOutlet weak var hotelNameLb: UILabel!
     @IBOutlet weak var countryLb: UILabel!
@@ -24,17 +23,17 @@ class ReservationController: UIViewController {
     @IBOutlet weak var descriptionLb: UILabel!
     @IBOutlet weak var totalPriceLb: UILabel!
     
-    var reservation = NSManagedObject()
+    var reservation: NSManagedObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.showNavigationBar()
-        // Do any additional setup after loading the view.
     }
     
-    func updateElements(){
-        let hotel = reservation.value(forKey: "hotel") as! NSSet
-        let route = reservation.value(forKey: "route") as! NSSet
+    func updateElements() {
+        let hotel = reservation.value(forKey: "hotel") as! NSManagedObject
+        let route = reservation.value(forKey: "route") as! NSManagedObject
         hotelNameLb.text = hotel.value(forKey: "name") as? String
         countryLb.text = hotel.value(forKey: "country") as? String
         cityLb.text = hotel.value(forKey: "city") as? String
@@ -47,15 +46,4 @@ class ReservationController: UIViewController {
         totalPriceLb.text = String(hotel.value(forKey: "totalPrice") as! Int)
         transportLb.text = reservation.value(forKey: "typeOfRoom") as? String
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -9,7 +9,6 @@
 import UIKit
 
 class ReservationTableViewCell: UITableViewCell {
-
     @IBOutlet weak var priceLb: UILabel!
     @IBOutlet weak var dateLb: UILabel!
     @IBOutlet weak var cityLb: UILabel!
@@ -17,7 +16,6 @@ class ReservationTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

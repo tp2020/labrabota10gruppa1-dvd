@@ -9,22 +9,22 @@
 import UIKit
 
 class HotelsTableViewCell: UITableViewCell {
-
     @IBOutlet weak var infoLb: UILabel!
     @IBOutlet weak var cityLb: UILabel!
     @IBOutlet weak var minMaxPriceLb: UILabel!
     @IBOutlet weak var hotelNameLb: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = UITableViewCell.SelectionStyle.none
     }
 
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if (highlighted) {
-            textLabel?.backgroundColor = UIColor.green
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if (selected) {
+            cityLb.backgroundColor = UIColor.green
         }
         else {
-            textLabel?.backgroundColor = UIColor.white
+            cityLb.backgroundColor = UIColor.white
         }
     }
 }
