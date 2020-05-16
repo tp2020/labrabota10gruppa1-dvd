@@ -56,13 +56,17 @@ class HotelsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         currentIndex = indexPath.row
         if (hotels[currentIndex].value(forKey: "numbOfLuxRooms") as! Int == 0){
             segmentationSC.setEnabled(false, forSegmentAt: 1)
+            if(segmentationSC.selectedSegmentIndex != 0){
             segmentationSC.selectedSegmentIndex = 0
             listTV.reloadData()
+            }
             
         } else if (hotels[currentIndex].value(forKey: "numbOfStRooms") as! Int == 0){
             segmentationSC.setEnabled(false, forSegmentAt: 0)
+            if(segmentationSC.selectedSegmentIndex != 1){
             segmentationSC.selectedSegmentIndex = 1
             listTV.reloadData()
+            }
             
         }else{
             segmentationSC.setEnabled(true,forSegmentAt: 0)
