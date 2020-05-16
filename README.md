@@ -23,3 +23,6 @@ Usage
 
 Contributing
 ----
+* _Dmitriy Tarasenko ([@dmitars](github.com/dmitars))_: managed the project, wrote documentation, designed database, wrote basic functional, designed functional and GUI requirements
+* _Daniil Lebedev ([@alphaver](github.com/alphaver))_: designed functional and GUI requirements, wrote database interface, implemented some basic funtional
+* _Viktor Graskov ([@ViktorHi](github.com/ViktoHi))_: designed mock-ups, wrote presentation, tested the program
